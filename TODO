@@ -1,0 +1,25 @@
+Dans view :
+
+Créer les objets dessinable (extends shape) Pacman, Ghost, Gum, LevelView
+
+Dans data :
+Créer les objets stockant l'etat des données de :
+- la map (LevelGrid)
+- les mangeables (gomme, super gomme, fruit)
+- Les participants (Plus de fantome ?) et leurs caractéristiques (vitesse, mode de déplacement)
+
+Dans rules :
+- Une classe qui "host" une partie, comme un launcher. C'est lui qui appelle les lectures de données, affiche les scores et lance une manche
+- Une classe qui instancie une partie (Créée a partir d'un objet niveau) et la fait evoluer en fonction du temps et des interactions clavier
+- Une suite de classe AI, associé aux fantomes
+- Une classe qui verifie les mouvements de pacman
+
+
+Dans view :
+- Une fenetre
+- un menu (qui affiche le score a droite actuel + high score, tant qu'a faire)
+- un panel affichant la partie
+- une classe dessiant et bougeant pacman
+- une classe dessinant et bougeant un fantome
+- une classe dessiant la map
+- une classe dessinant un objet mangeable ( gomme / supergomme / ....)
