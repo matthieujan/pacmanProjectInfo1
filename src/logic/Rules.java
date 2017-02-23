@@ -7,4 +7,5 @@ package logic;
  * @author Matthieu Jan - matthieu.jan56@gmail.com
  */
 public class Rules {
+
 }
