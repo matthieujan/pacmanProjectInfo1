@@ -21,4 +21,6 @@ public class LevelGrid {
     private boolean connexe(){
         return false;
     }
+
+    // ceci n'est pas une commentaire
 }
