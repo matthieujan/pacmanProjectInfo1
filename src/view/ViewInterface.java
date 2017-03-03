@@ -1,7 +1,5 @@
 package view;
-
 import logic.Engine;
-
 import java.util.List;
 
 /**
@@ -15,10 +13,11 @@ public abstract class ViewInterface {
     protected Engine engine;
 
     public abstract void drawMap(String[][] map);
-    public abstract void refresh();
     public abstract void animate();
     public abstract void setDirection(String objectName, String direction);
+    public abstract void setSpeed(String objectName, String speed);
     public abstract void setScore(int score);
+    public abstract void processObject(String objectName);
 
     public ViewInterface(Engine e, List<String> characters, String[][] map){
         engine = e;
