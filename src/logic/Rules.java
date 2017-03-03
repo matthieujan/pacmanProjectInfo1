@@ -8,4 +8,9 @@ package logic;
  */
 public class Rules {
 
+    public Coordinates whereToMove(Map m){
+
+
+        return new Coordinates(0,0);
+    }
 }

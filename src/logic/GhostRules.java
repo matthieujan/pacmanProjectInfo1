@@ -1,7 +1,7 @@
-
+package logic;
 /**
  *
  */
-public class GhostRules {
+public class GhostRules extends Rules{
 
 }

@@ -1,3 +1,4 @@
+package logic;
 /**
  * A map containing items
  */

@@ -1,7 +1,7 @@
-
+package logic;
 /**
  *
  */
-public class PacmanRules {
+public class PacmanRules extends Rules{
   
 }
