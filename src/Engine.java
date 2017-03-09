@@ -25,7 +25,7 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
     private ControllerInterface ctrl;
     private ViewInterface view;
 
-    private int currentLevel;
+    int currentLevel;
 
 
     public Engine(DataInterface dat, ControllerInterface ctrl, ViewInterface view) {
@@ -44,10 +44,6 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
         view.resetGame();
     }
 
-    public void startGame() {
-        view.startGame();
-    }
-
     public int getCurrentLevel() {
         return currentLevel;
     }
@@ -56,7 +52,7 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
         return new String[0][];
     }
 
-    public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String enityDirection) {
+    public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String entityDirection) {
         return false;
     }
 
@@ -88,7 +84,7 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
         return false;
     }
 
-    public boolean isGivingPower(String itemName) {
-        return false;
+    public String isGivingPower(String itemName) {
+        return null;
     }
 }
