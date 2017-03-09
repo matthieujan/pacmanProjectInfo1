@@ -16,6 +16,7 @@ import java.util.*;
  *
  * @version 2011.07.31
  */
+@SuppressWarnings("WeakerAccess")
 public class Canvas
 {
     public static final int WIDTH = 500, HEIGHT = 500;
@@ -119,7 +120,7 @@ public class Canvas
      * @param visible  boolean value representing the desired visibility of
      * the canvas (true or false)
      */
-    public void setVisible(boolean visible)
+    private void setVisible(boolean visible)
     {
         if(graphic == null) {
             // first time: instantiate the offscreen image and fill it with
