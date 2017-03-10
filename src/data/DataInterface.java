@@ -13,11 +13,12 @@ public interface DataInterface {
      *
      * Contrat : Les couloirs indiquent le plus court chemin pour retourner au spawn
      * Contrat : Les murs ont la lettre M, les couloirs H/B/G/D
-     * Contrat : Un couloir à la case (1,x) implique un couloir à la case (ret[].length,x) et inversement.
+     * Contrat : Un couloir à la case (0,x) implique un couloir à la case (ret.length,x) et inversement.
      * Contrat : Un couloir à la case (x,0) implique un couloir à la case (x,ret.[0].length)
      * Contrat : ret.length >= 3
      * Contrat : Pour tout <x,y>, ret[x].length == ret[y].length >= 3;
      * Contrat : Les couloirs forment un graphe non orienté avec une seule composante connexe.
+     * Contrat : Les circuits du graphe contiennent au moins 8 elements
      *
      * @return un tableau de char a deux dimensions
      */
@@ -37,7 +38,6 @@ public interface DataInterface {
      */
     String[][] getContent();
 
-
     /**
      * Methode permettant de récuperer le score d'un entité mangé par pacman.
      *
@@ -46,15 +46,6 @@ public interface DataInterface {
      * @throws exceptions.UnknownItemException si l'entité demandé ne fait pas partie du niveau
      */
     int getScoreOf(String entityName);
-
-    /**
-     * Methode permettant de savoir si un objet mangé par pacman lui donne une vie.
-     *
-     * @param itemName
-     * @return
-     * @throws exceptions.UnknownItemException si l'item demandé ne fait pas partie du niveau
-     */
-    boolean isGivingLife(String itemName);
 
     /**
      * Methode permettant de savoir si un objet mangé par pacman lui donne un pouvoir.
