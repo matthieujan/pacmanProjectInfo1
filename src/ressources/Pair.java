@@ -8,26 +8,23 @@ package ressources;
  */
 public class Pair<L,R> {
 
-    private final L left;
-    private final R right;
+    public final L x;
+    public final R y;
 
-    public Pair(L left, R right) {
-        this.left = left;
-        this.right = right;
+    public Pair(L x, R y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public L getX() { return left; }
-    public R getY() { return right; }
-
     @Override
-    public int hashCode() { return left.hashCode() ^ right.hashCode(); }
+    public int hashCode() { return x.hashCode() ^ y.hashCode(); }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pair)) return false;
         Pair pairo = (Pair) o;
-        return this.left.equals(pairo.getX()) &&
-                this.right.equals(pairo.getY());
+        return this.x.equals(pairo.x) &&
+                this.y.equals(pairo.y);
     }
 
 }
