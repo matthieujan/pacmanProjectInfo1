@@ -10,26 +10,27 @@ import main.*;
  */
 public class BasicView implements ViewInterface {
 
-    private static Canvas canvas;
-    private LevelView levelView;
-    private PacmanView pacman;
-    private GhostView ghost1;
-    private int mapSize;
-    public static float pas;
-
     public BasicView() {
 
     }
 
     /**
-     * Construit une nouvelle fenetre vierge, puis la remplie avec les elements actuels
+     * Construit une nouvelle fenetre vierge, puis la rempli avec les elements actuels
      * Utilisé une seule fois pour construire la fenetre
      */
     @Override
     public void resetView() {
-      canvas = Canvas.getCanvas();
-      this.levelView = new LevelView();
-      this.levelView.draw();
+        int size = 20;
+        char[][] walls = Engine.getInstance().getWalls();
+        for(int i = 0;i<walls.length;i++){
+            for(int j = 0;j<walls[0].length;j++){
+                if(walls[i][j] == 'W'){
+                    Figure b = new WallBlock(size,i*size,j*size,"Red");
+                    b.draw();
+                }
+            }
+        }
+        Canvas.getCanvas().redraw();
     }
 
     /**
@@ -37,10 +38,6 @@ public class BasicView implements ViewInterface {
      */
     @Override
     public void resetGame() {
-
-    }
-
-    public float getPas() {
-      return this.mapSize/500;
+        resetView();
     }
 }

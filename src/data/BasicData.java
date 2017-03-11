@@ -21,7 +21,6 @@ public class BasicData implements DataInterface{
             currentContent = createBasicContent();
             currentCharacters = createBasicCharacter();
             currentWalls = createBasicWall();
-
         }
     }
 

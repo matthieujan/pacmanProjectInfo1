@@ -46,6 +46,7 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
     }
 
     public void resetGame() {
+        dat.resetData();
         view.resetGame();
     }
 
