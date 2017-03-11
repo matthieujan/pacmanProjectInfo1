@@ -16,8 +16,8 @@ public class Pair<L,R> {
         this.right = right;
     }
 
-    private L getLeft() { return left; }
-    private R getRight() { return right; }
+    public L getX() { return left; }
+    public R getY() { return right; }
 
     @Override
     public int hashCode() { return left.hashCode() ^ right.hashCode(); }
@@ -26,8 +26,8 @@ public class Pair<L,R> {
     public boolean equals(Object o) {
         if (!(o instanceof Pair)) return false;
         Pair pairo = (Pair) o;
-        return this.left.equals(pairo.getLeft()) &&
-                this.right.equals(pairo.getRight());
+        return this.left.equals(pairo.getX()) &&
+                this.right.equals(pairo.getY());
     }
 
 }

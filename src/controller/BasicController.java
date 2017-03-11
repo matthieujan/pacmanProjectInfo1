@@ -14,7 +14,6 @@ public class BasicController implements ControllerInterface{
 
 
     public BasicController(){
-
     }
 
     @Override
@@ -23,13 +22,18 @@ public class BasicController implements ControllerInterface{
     }
 
     @Override
-    public String[][] getCurrentContent() {
-        return new String[0][];
-    }
-
-    @Override
     public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String entityDirection) {
-        return false;
+        boolean ret = true;
+        if((entityDirection == "LEFT") || (entityDirection == "RIGHT")){
+            if(Math.floor(entityPosition.getY()) != entityPosition.getY()){
+
+            }
+        }else if((entityDirection == "DOWN") || (entityDirection == "UP")) {
+            if(Math.floor(entityPosition.getX()) != entityPosition.getX()){
+
+            }
+        }
+        return ret;
     }
 
     @Override

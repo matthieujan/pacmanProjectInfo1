@@ -9,10 +9,16 @@ package data;
 public interface DataInterface {
 
     /**
+     * Methode indiquant a data de reinitialiser son contenu (nouvelle partie)
+     */
+    void resetData();
+
+
+    /**
      * Méthode permettant de recuperer la position des murs et des lanes du niveau actuel.
      *
      * Contrat : Les couloirs indiquent le plus court chemin pour retourner au spawn
-     * Contrat : Les murs ont la lettre M, les couloirs H/B/G/D
+     * Contrat : Les murs ont la lettre W, les couloirs U/D/L/R
      * Contrat : Un couloir à la case (0,x) implique un couloir à la case (ret.length,x) et inversement.
      * Contrat : Un couloir à la case (x,0) implique un couloir à la case (x,ret.[0].length)
      * Contrat : ret.length >= 3

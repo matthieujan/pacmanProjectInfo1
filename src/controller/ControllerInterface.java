@@ -16,12 +16,6 @@ public interface ControllerInterface {
     int getCurrentLevel();
 
     /**
-     * Methode qui renvoie le contenu actuelle de la map (après avoir mangé des items
-     * @return
-     */
-    String[][] getCurrentContent();
-
-    /**
      * Verifie si un mouvemnt est valide
      * @param entityName l'entité qui bouge
      * @param entityPosition la position actuelle de l'entité, relative à la map

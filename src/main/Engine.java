@@ -29,8 +29,6 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
     private ControllerInterface ctrl;
     private ViewInterface view;
 
-    String[][] currentContent;
-
     int currentLevel;
 
 
@@ -53,10 +51,6 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
         return currentLevel;
     }
 
-    public String[][] getCurrentContent() {
-        return ctrl.getCurrentContent();
-    }
-
     public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String entityDirection) {
         return ctrl.isValidMove(entityName, entityPosition, entityDirection);
     }
@@ -71,6 +65,11 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
 
     public String[] getBuffOf(String entityName) {
         return ctrl.getBuffOf(entityName);
+    }
+
+    @Override
+    public void resetData() {
+        dat.resetData();
     }
 
     public char[][] getWalls() {
