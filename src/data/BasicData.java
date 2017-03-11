@@ -13,6 +13,11 @@ public class BasicData implements DataInterface{
     }
 
     @Override
+    public String[] getCharacters() {
+        return new String[0];
+    }
+
+    @Override
     public String[][] getContent() {
         return new String[0][];
     }

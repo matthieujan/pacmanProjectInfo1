@@ -15,11 +15,11 @@ import view.ViewInterface;
  * main.Engine implemente les 3 interfaces, et appelle l'objet approprié à chaque fois.
  * @author Matthieu Jan - matthieu.jan56@gmail.com
  */
-public class Engine implements DataInterface,ViewInterface,ControllerInterface{
+public class Engine implements DataInterface,ViewInterface,ControllerInterface {
     private static Engine instance = null;
 
     public static Engine getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new Engine(Launcher.getConfig());
         }
         return instance;
@@ -29,6 +29,8 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
     private ControllerInterface ctrl;
     private ViewInterface view;
 
+    String[][] currentContent;
+
     int currentLevel;
 
 
@@ -37,10 +39,6 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
         this.ctrl = g.getCtr();
         this.view = g.getView();
         currentLevel = 0;
-    }
-
-    public void start(){
-
     }
 
     public void resetView() {
@@ -56,42 +54,42 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
     }
 
     public String[][] getCurrentContent() {
-        return new String[0][];
+        return ctrl.getCurrentContent();
     }
 
     public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String entityDirection) {
-        return false;
+        return ctrl.isValidMove(entityName, entityPosition, entityDirection);
     }
 
     public String getAMove(String entityName, Pair<Float, Float> entityPosition) {
-        return null;
+        return ctrl.getAMove(entityName,entityPosition);
     }
 
     public String whatHappen(String entityOne, String entityTwo) {
-        return null;
+        return ctrl.whatHappen(entityOne, entityTwo);
     }
 
     public String[] getBuffOf(String entityName) {
-        return new String[0];
+        return ctrl.getBuffOf(entityName);
     }
 
     public char[][] getWalls() {
-        return new char[0][];
+        return dat.getWalls();
+    }
+
+    public String[] getCharacters() {
+        return dat.getCharacters();
     }
 
     public String[][] getContent() {
-        return new String[0][];
+        return dat.getContent();
     }
 
     public int getScoreOf(String entityName) {
-        return 0;
-    }
-
-    public boolean isGivingLife(String itemName) {
-        return false;
+        return dat.getScoreOf(entityName);
     }
 
     public String isGivingPower(String itemName) {
-        return null;
+        return dat.isGivingPower(itemName);
     }
 }

@@ -24,6 +24,13 @@ public interface DataInterface {
      */
     char[][] getWalls();
 
+
+    /**
+     * Méthode renvoyant les personnages du niveau
+     * @return
+     */
+    String[] getCharacters();
+
     /**
      * Méthode permettant de recuperer la position item et des spawns (ghost et pacman) du niveau actuel.
      * <p>
