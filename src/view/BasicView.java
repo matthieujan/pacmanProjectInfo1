@@ -11,7 +11,11 @@ import main.*;
 public class BasicView implements ViewInterface {
 
     private Canvas canvas;
+    private LevelView levelview;
+    private PacmanView pacman;
+    private GhostView ghost1;
     private int mapSize;
+    public static float pas;
 
     public BasicView() {
 
@@ -25,6 +29,8 @@ public class BasicView implements ViewInterface {
     public void resetView() {
       this.canvas = Canvas.getCanvas();
       this.levelView = new LeveView();
+      this.pacman = new PacmanView();
+      this.ghost1 = new GhostView();
       LevelView.draw();
     }
 
