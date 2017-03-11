@@ -1,23 +1,27 @@
+package main;
+
 import controller.ControllerInterface;
 import data.DataInterface;
+import ressources.GameHandlers;
 import ressources.Pair;
 import view.ViewInterface;
 
-import javax.xml.crypto.Data;
-
 /**
- * Project pacmanProjectInfo1, Engine
+ * Project pacmanProjectInfo1, main.Engine
  * Created on Thu 3/9/17
- * Engine est la classe qui coordonne le comportement du logiciel. Il possede un objet de chaque package implementant les interfaces necessaires au fonctionnement du logiciel.
+ * main.Engine est la classe qui coordonne le comportement du logiciel. Il possede un objet de chaque package implementant les interfaces necessaires au fonctionnement du logiciel.
  * Chacun de ses objets est indépendant, mais les contrats des interfaces devront être respecté.
- * C'est Engine qui "répond" au différente classe, et pour simplifier le fonctionnement, il a une structure semblable a un singleton, mais avec un constructeur public, permettant a launcher de créer des Engines différents si besoin (Data différente, par exemple)
- * Engine implemente les 3 interfaces, et appelle l'objet approprié à chaque fois.
+ * C'est main.Engine qui "répond" au différente classe, et pour simplifier le fonctionnement, il a une structure semblable a un singleton, mais avec un constructeur public, permettant a launcher de créer des Engines différents si besoin (Data différente, par exemple)
+ * main.Engine implemente les 3 interfaces, et appelle l'objet approprié à chaque fois.
  * @author Matthieu Jan - matthieu.jan56@gmail.com
  */
 public class Engine implements DataInterface,ViewInterface,ControllerInterface{
-    private static Engine instance;
+    private static Engine instance = null;
 
     public static Engine getInstance() {
+        if(instance == null){
+            instance = new Engine(Launcher.getConfig());
+        }
         return instance;
     }
 
@@ -28,12 +32,15 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface{
     int currentLevel;
 
 
-    public Engine(DataInterface dat, ControllerInterface ctrl, ViewInterface view) {
-        this.dat = dat;
-        this.ctrl = ctrl;
-        this.view = view;
+    private Engine(GameHandlers g) {
+        this.dat = g.getModel();
+        this.ctrl = g.getCtr();
+        this.view = g.getView();
         currentLevel = 0;
-        instance = this;
+    }
+
+    public void start(){
+
     }
 
     public void resetView() {

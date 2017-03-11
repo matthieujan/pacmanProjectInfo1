@@ -10,5 +10,16 @@ package ressources;
  */
 public enum Buff {
 
+    EATABLE("EATABLE");
+
+    String name;
+
+    Buff(String name){
+        this.name = name;
+    }
+
+    public String toString(){
+        return this.name;
+    }
 
 }
