@@ -11,15 +11,12 @@ import ressources.Pair;
 public class BasicData implements DataInterface{
     @Override
     public void resetData() {
-
-    }
+        }
 
     @Override
     public char[][] getWalls() {
         return new char[0][];
     }
-
-
 
     @Override
     public String[] getCharacters() {
