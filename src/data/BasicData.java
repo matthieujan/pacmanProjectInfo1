@@ -9,31 +9,27 @@ import ressources.Pair;
  * @author Matthieu Jan - matthieu.jan56@gmail.com
  */
 public class BasicData implements DataInterface{
-    @Override
-    public void resetData() {
-        }
 
-    @Override
+
+   public void resetData() {
+   }
+
     public char[][] getWalls() {
         return new char[0][];
     }
 
-    @Override
     public String[] getCharacters() {
         return new String[0];
     }
 
-    @Override
     public String[][] getContent() {
         return new String[0][];
     }
 
-    @Override
     public int getScoreOf(String entityName) {
         return 0;
     }
 
-    @Override
     public void setContent(Pair<Integer, Integer> position, String content) {
 
     }
