@@ -95,7 +95,7 @@ public class BasicController implements ControllerInterface{
     }
 
     @Override
-    public Event whatHappen(String entityOne, String entityTwo) {
+    public Event whatHappen(String entityOne,Pair<Float,Float>posOne, String entityTwo,Pair<Float,Float> posTwo) {
         Event ret = null;
         if(entityOne.matches("(.*)Ghost") && entityTwo.matches("(.*)Pacman(.*)")){
             ret = Event.DIE;
