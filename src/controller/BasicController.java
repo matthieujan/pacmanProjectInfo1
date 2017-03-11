@@ -87,6 +87,10 @@ public class BasicController implements ControllerInterface{
             case 2 : ret = "LEFT"; break;
             case 3 : ret = "DOWN"; break;
         }
+
+        if(entityName.matches("(.*)Pacman(.*)")){
+            ret = null;
+        }
         return ret;
     }
 
