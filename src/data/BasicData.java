@@ -1,5 +1,7 @@
 package data;
 
+import main.Engine;
+import ressources.Content;
 import ressources.Pair;
 
 /**
@@ -10,28 +12,65 @@ import ressources.Pair;
  */
 public class BasicData implements DataInterface{
 
+    char[][] currentWalls;
+    String[][] currentContent;
+    String[] currentCharacters;
 
-   public void resetData() {
-   }
+    public void resetData(){
+        if(true){
+            currentContent = createBasicContent();
+            currentCharacters = createBasicCharacter();
+            currentWalls = createBasicWall();
+
+        }
+    }
 
     public char[][] getWalls() {
-        return new char[0][];
+        return currentWalls;
     }
 
     public String[] getCharacters() {
-        return new String[0];
+        return currentCharacters;
     }
 
     public String[][] getContent() {
-        return new String[0][];
+        return currentContent;
     }
 
     public int getScoreOf(String entityName) {
-        return 0;
+        return 100;
     }
 
     public void setContent(Pair<Integer, Integer> position, String content) {
-
+        currentContent[position.x][position.y] = content;
     }
 
+    private String[][] createBasicContent(){
+        String[][] ret = {
+                {null,null,"GOMME",null,null},
+                {null,"GOMME","GOMME","GOMME",null},
+                {null,"GOMME","GHOSTSPAN","GOMME",null},
+                {null,"GOMME","PACSPAWN","GOMME",null},
+                {null,null,"GOMME",null,null},
+                };
+
+        return ret;
+    }
+
+    private char[][] createBasicWall(){
+        char[][] ret ={
+                {'W','W','D','W','W'},
+                {'W','R','D','L','W'},
+                {'W','R','D','L','W'},
+                {'W','R','U','L','W'},
+                {'W','W','U','W','W'},
+
+                };
+        return ret;
+    }
+
+    private String[] createBasicCharacter(){
+        String[] ret = {"Pacman","RedGhost"};
+        return ret;
+    }
 }
