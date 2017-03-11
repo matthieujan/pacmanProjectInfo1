@@ -1,5 +1,7 @@
 package data;
 
+import ressources.Pair;
+
 /**
  * Project pacmanProjectInfo1, DataInterface
  * Created on Thu 3/9/17
@@ -28,13 +30,14 @@ public interface DataInterface {
      *
      * @return un tableau de char a deux dimensions
      */
-    char[][] getWalls();
 
+    char[][] getWalls();
 
     /**
      * Méthode renvoyant les personnages du niveau
      * @return
      */
+
     String[] getCharacters();
 
     /**
@@ -58,15 +61,13 @@ public interface DataInterface {
      * @return
      * @throws exceptions.UnknownItemException si l'entité demandé ne fait pas partie du niveau
      */
+
     int getScoreOf(String entityName);
 
-    /**
-     * Methode permettant de savoir si un objet mangé par pacman lui donne un pouvoir.
-     *
-     * @param itemName
-     * @return Null si false, le nom du pouvoir sinon (ouverture vers des pouvoirs rigolos)
-     * @throws exceptions.UnknownItemException si l'item demandé ne fait pas partie du niveau
-     */
-    String isGivingPower(String itemName);
+
+
+    void setContent(Pair<Integer,Integer> position, String content);
+
 
 }
+

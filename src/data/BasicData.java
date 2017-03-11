@@ -1,5 +1,7 @@
 package data;
 
+import ressources.Pair;
+
 /**
  * Project pacmanProjectInfo1, BasicData
  * Created on Sat 3/11/17
@@ -8,9 +10,16 @@ package data;
  */
 public class BasicData implements DataInterface{
     @Override
+    public void resetData() {
+
+    }
+
+    @Override
     public char[][] getWalls() {
         return new char[0][];
     }
+
+
 
     @Override
     public String[] getCharacters() {
@@ -28,7 +37,8 @@ public class BasicData implements DataInterface{
     }
 
     @Override
-    public String isGivingPower(String itemName) {
-        return null;
+    public void setContent(Pair<Integer, Integer> position, String content) {
+
     }
+
 }
