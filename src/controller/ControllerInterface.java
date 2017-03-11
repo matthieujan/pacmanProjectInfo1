@@ -33,7 +33,7 @@ public interface ControllerInterface {
      * @param entityPosition sa position actuelle (pour detecter d'eventuelle LOS)
      * @return
      */
-    String getAMove(String entityName,Pair<Float,Float> entityPosition);
+    String getAMove(String oldDirection, String entityName,Pair<Float,Float> entityPosition);
 
     /**
      * Decrit l'action qui se produit en cas de rencontre entre deux objets

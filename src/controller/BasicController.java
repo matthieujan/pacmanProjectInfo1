@@ -12,9 +12,6 @@ import ressources.Pair;
  */
 public class BasicController implements ControllerInterface{
 
-    String[][] content;
-
-
     public BasicController(){
     }
 
@@ -78,7 +75,7 @@ public class BasicController implements ControllerInterface{
     }
 
     @Override
-    public String getAMove(String entityName, Pair<Float, Float> entityPosition) {
+    public String getAMove(String olddirection, String entityName, Pair<Float, Float> entityPosition) {
         String ret = "";
         int r = (int)(Math.floor(Math.random()*4));
         switch (r){

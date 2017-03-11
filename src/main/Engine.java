@@ -2,6 +2,8 @@ package main;
 
 import controller.ControllerInterface;
 import data.DataInterface;
+import ressources.Buff;
+import ressources.Event;
 import ressources.GameHandlers;
 import ressources.Pair;
 import view.ViewInterface;
@@ -55,15 +57,16 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
         return ctrl.isValidMove(entityName, entityPosition, entityDirection);
     }
 
-    public String getAMove(String entityName, Pair<Float, Float> entityPosition) {
-        return ctrl.getAMove(entityName,entityPosition);
+    public String getAMove(String oldDirection,String entityName, Pair<Float, Float> entityPosition) {
+        return ctrl.getAMove(oldDirection,entityName,entityPosition);
     }
 
-    public String whatHappen(String entityOne, String entityTwo) {
-        return ctrl.whatHappen(entityOne, entityTwo);
+    @Override
+    public Event whatHappen(String entityOne, Pair<Float, Float> posOne, String entityTwo, Pair<Float, Float> posTwo) {
+        return ctrl.whatHappen(entityOne,posOne,entityTwo,posTwo);
     }
 
-    public String[] getBuffOf(String entityName) {
+    public Buff[] getBuffOf(String entityName) {
         return ctrl.getBuffOf(entityName);
     }
 
@@ -88,7 +91,8 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
         return dat.getScoreOf(entityName);
     }
 
-    public String isGivingPower(String itemName) {
-        return dat.isGivingPower(itemName);
+    @Override
+    public void setContent(Pair<Integer, Integer> position, String content) {
+        dat.setContent(position,content);
     }
 }
