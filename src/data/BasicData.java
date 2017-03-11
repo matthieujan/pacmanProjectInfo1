@@ -49,7 +49,7 @@ public class BasicData implements DataInterface{
         String[][] ret = {
                 {null,null,"GOMME",null,null},
                 {null,"GOMME","GOMME","GOMME",null},
-                {null,"GOMME","GHOSTSPAN","GOMME",null},
+                {null,"GOMME","GHOSTSPAWN","GOMME",null},
                 {null,"GOMME","PACSPAWN","GOMME",null},
                 {null,null,"GOMME",null,null},
                 };

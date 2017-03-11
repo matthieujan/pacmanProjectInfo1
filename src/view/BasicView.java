@@ -10,8 +10,8 @@ import main.*;
  */
 public class BasicView implements ViewInterface {
 
-    private Canvas canvas;
-    private LevelView levelview;
+    private static Canvas canvas;
+    private LevelView levelView;
     private PacmanView pacman;
     private GhostView ghost1;
     private int mapSize;
@@ -27,11 +27,9 @@ public class BasicView implements ViewInterface {
      */
     @Override
     public void resetView() {
-      this.canvas = Canvas.getCanvas();
-      this.levelView = new LeveView();
-      this.pacman = new PacmanView();
-      this.ghost1 = new GhostView();
-      LevelView.draw();
+      canvas = Canvas.getCanvas();
+      this.levelView = new LevelView();
+      this.levelView.draw();
     }
 
     /**
@@ -40,26 +38,6 @@ public class BasicView implements ViewInterface {
     @Override
     public void resetGame() {
 
-    }
-
-    public Canvas getCanvas() {
-      return this.canvas;
-    }
-
-    public Figure[] getCharacters() {
-      return this.characters;
-    }
-
-    public char[][] getWalls() {
-      return this.walls;
-    }
-
-    public String[][] getContent() {
-      return this.content;
-    }
-
-    public int getMapSize() {
-      return this.mapSize;
     }
 
     public float getPas() {
