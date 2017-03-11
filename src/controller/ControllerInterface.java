@@ -1,5 +1,7 @@
 package controller;
 
+import ressources.Buff;
+import ressources.Event;
 import ressources.Pair;
 
 /**
@@ -39,12 +41,12 @@ public interface ControllerInterface {
      * @param entityTwo
      * @return
      */
-    String whatHappen(String entityOne, String entityTwo);
+    Event whatHappen(String entityOne, String entityTwo);
 
     /**
      * Recupere les buffs de l'entité (concretement, pour un fantome, "eatable", ou pour pacman, "superspeed")
      * @param entityName
      * @return
      */
-    String[] getBuffOf(String entityName);
+    Buff[] getBuffOf(String entityName);
 }
