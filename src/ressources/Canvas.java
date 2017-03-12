@@ -1,4 +1,4 @@
-package view;
+package ressources;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,13 +34,12 @@ public class Canvas
     public static Canvas getCanvas()
     {
         if(canvasSingleton == null) {
-            canvasSingleton = new Canvas("BlueJ Picture Demo", WIDTH, HEIGHT,
+            canvasSingleton = new Canvas("PACMAN", WIDTH, HEIGHT,
 					 Color.white);
         }
         canvasSingleton.setVisible(true);
         return canvasSingleton;
     }
-
     //  ----- instance part -----
 
     private JFrame frame;

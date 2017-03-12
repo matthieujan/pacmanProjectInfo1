@@ -69,7 +69,7 @@ public class BasicData implements DataInterface{
     }
 
     private String[] createBasicCharacter(){
-        String[] ret = {"Pacman","RedGhost"};
+        String[] ret = {"Pacman"};
         return ret;
     }
 }

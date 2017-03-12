@@ -1,4 +1,4 @@
-package view;
+package ressources;
 import java.awt.*;
 
 /**

@@ -1,5 +1,4 @@
-package view;
-import java.awt.*;
+package ressources;
 import java.awt.geom.*;
 
 /**

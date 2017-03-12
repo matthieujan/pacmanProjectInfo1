@@ -1,4 +1,4 @@
-package view;
+package ressources;
 
 /**
  * An abstract figure that can be manipulated and that draws itself on a canvas.
