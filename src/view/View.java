@@ -11,22 +11,32 @@ import ressources.Pair;
  *
  * @author Matthieu Jan - matthieu.jan56@gmail.com
  */
-public class BasicView implements ViewInterface {
+public class View implements ViewInterface {
 
     private Block[][] viewContent;
     private Item[][] itemList;
     private Char[] charList;
 
 
-    private int pacmanSpeed = 10;
-    private int ghostSpeed = 10;
+    private int pacmanSpeed;
+    private int ghostSpeed;
     private int size;
+
+    private int score;
+
 
     private static boolean VERBOSE = true;
 
-    public BasicView() {
 
+    public View() {
+        this.setSpeeds(10,10);
     }
+
+    public void setSpeeds(int pacmanSpeed, int ghostSpeed){
+        this.pacmanSpeed = pacmanSpeed;
+        this.ghostSpeed = ghostSpeed;
+    }
+
 
     /**
      * Construit une nouvelle fenetre vierge, puis la rempli avec les elements actuels
@@ -40,6 +50,11 @@ public class BasicView implements ViewInterface {
         cleanViewContent();
     }
 
+    /**
+     * Recupere les objets necessaires a la création de la fenetre
+     * Instancie les objets de la vues
+     * Dessine et lance le deroulement de la partie
+     */
     public void startView(){
         // Getting new content
         char[][] walls = Engine.getInstance().getWalls();
@@ -47,7 +62,7 @@ public class BasicView implements ViewInterface {
         String[] chars = Engine.getInstance().getCharacters();
 
         Canvas c = Canvas.getCanvas();
-        size = Math.min(Canvas.WIDTH /walls.length, Canvas.HEIGHT /walls[0].length);
+        size = 48;
 
         //Setting new contents
         BlockGenerator bg = new BlockGenerator(size,"black","blue");
@@ -61,10 +76,13 @@ public class BasicView implements ViewInterface {
         CharGenerator cg = new CharGenerator(size,content);
         charList = cg.getCharArray(chars);
 
+        int speed = 2;
+
+        this.setSpeeds(speed,speed);
         //Drawing it
         drawViewContent();
-        drawItemList();
         drawCharsList();
+        drawItemList();
         c.redraw();
 
         while(!Engine.getInstance().endGame()){
@@ -73,14 +91,12 @@ public class BasicView implements ViewInterface {
         }
     }
 
-
+    /**
+     * Modelise une iteration de la partie : un mouvemeent par personnage
+     */
     private void gameLoop(){
         Char c;
-
-        int pacSpeed = 10;
-        int ghostSpeed = 10;
-
-        MoveManager mo = new MoveManager(viewContent,itemList,charList,pacSpeed,ghostSpeed);
+        MoveManager mo = new MoveManager(viewContent,itemList,charList,pacmanSpeed,ghostSpeed,size);
 
         for(int i = 0;i<charList.length;i++){
             c = charList[i];
@@ -91,16 +107,50 @@ public class BasicView implements ViewInterface {
                 mo.ghostMove(c);
             }
         }
+        didTheyGetHim();
+    }
+    /**
+     * Methode qui verifie si il y a contact
+     * Si oui, effectue la demande d'evenement et applique l'evenement
+     */
+    public void didTheyGetHim(){
+        int x = charList[0].getX();
+        int y = charList[0].getY();
+        int gx,gy;
+        Char g;
+        for(int i = 1;i<charList.length;i++){
+            g = charList[i];
+            gx = Math.abs(g.getX()- x);
+            gy = Math.abs(g.getY() -y );
+            if(gx<size/2 && gy<size/2){
+                eventDie(charList[0]);
+            }
+        }
+
     }
 
+    private void eventDie(Char c) {
+        c.erase();
+        int x = 0;
+        while (charList[x].getName() != c.getName()) {
+            x++;
+        }
+        CharGenerator cg = new CharGenerator(size, Engine.getInstance().getContent());
+        charList[x] = cg.getPacman();
+        charList[x].draw();
+    }
     /**
      * Methode permettant de preparer une nouvelle partie
      */
     @Override
     public void resetGame() {
+        score = 0;
         resetView();
     }
 
+    /**
+     * Methode qui dessine les murs et couloirs
+     */
     private void drawViewContent() {
         for (int i = 0; i < viewContent.length; i++) {
             for (int j = 0; j < viewContent[0].length; j++) {
@@ -109,6 +159,9 @@ public class BasicView implements ViewInterface {
         }
     }
 
+    /**
+     * Methode qui dessine les items
+     */
     private void drawItemList(){
         if(itemList != null) {
             for (int i = 0; i < itemList.length;i++) {
@@ -121,6 +174,9 @@ public class BasicView implements ViewInterface {
         }
     }
 
+    /**
+     * Methode qui dessine les personnages
+     */
     private void drawCharsList(){
         if(charList != null) {
             for (int i = 0; i < charList.length;i++) {
@@ -129,6 +185,9 @@ public class BasicView implements ViewInterface {
         }
     }
 
+    /**
+     * Methode qui reinit la partie mur et couloir de la view
+     */
     private void cleanViewContent(){
         if(viewContent != null){
             for (int i = 0; i < viewContent.length; i++) {
@@ -140,6 +199,9 @@ public class BasicView implements ViewInterface {
         }
     }
 
+    /**
+     * Methode qui reinit la partie contenu de la view
+     */
     private void cleanItemList(){
         if(itemList != null) {
             for (int i = 0; i < itemList.length;i++) {
@@ -151,6 +213,9 @@ public class BasicView implements ViewInterface {
         }
     }
 
+    /**
+     * Methode qui reinit les personnages de la view
+     */
     private void cleanCharList(){
         if(charList != null) {
             for (int i = 0; i < charList.length;i++) {
@@ -158,11 +223,5 @@ public class BasicView implements ViewInterface {
             }
         }
         charList = null;
-    }
-
-    public static void trace(String s){
-        if(VERBOSE){
-            System.out.println(s);
-        }
     }
 }
