@@ -32,7 +32,7 @@ public class ItemGenerator {
     }
 
     private Item getItemGomme(int x, int y){
-        return new Item(blockSize,x*blockSize,y*blockSize,"red");
+        return new Item("GOMME",blockSize,x*blockSize,y*blockSize,"red");
     }
 
 

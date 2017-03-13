@@ -41,8 +41,24 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
         currentLevel = 0;
     }
 
+    public void startView(){
+        view.startView();
+    }
+
     public void resetView() {
         view.resetView();
+    }
+
+    public void start(){
+        dat.resetData();
+        view.resetGame();
+
+        while(true){
+            view.startView();
+            currentLevel++;
+            resetData();
+            resetView();
+        }
     }
 
     public void resetGame() {
@@ -63,12 +79,17 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
     }
 
     @Override
-    public Event whatHappen(String entityOne, Pair<Float, Float> posOne, String entityTwo, Pair<Float, Float> posTwo) {
-        return ctrl.whatHappen(entityOne,posOne,entityTwo,posTwo);
+    public Event whatHappen(String entityOne, String entityTwo) {
+        return ctrl.whatHappen(entityOne,entityTwo);
     }
 
     public Buff[] getBuffOf(String entityName) {
         return ctrl.getBuffOf(entityName);
+    }
+
+    @Override
+    public boolean endGame() {
+        return ctrl.endGame();
     }
 
     @Override
@@ -95,5 +116,10 @@ public class Engine implements DataInterface,ViewInterface,ControllerInterface {
     @Override
     public void setContent(Pair<Integer, Integer> position, String content) {
         dat.setContent(position,content);
+    }
+
+    @Override
+    public int leftToEat() {
+        return dat.leftToEat();
     }
 }

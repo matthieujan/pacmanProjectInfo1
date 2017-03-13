@@ -15,7 +15,6 @@ public interface DataInterface {
      */
     void resetData();
 
-
     /**
      * Méthode permettant de recuperer la position des murs et des lanes du niveau actuel.
      *
@@ -64,10 +63,8 @@ public interface DataInterface {
 
     int getScoreOf(String entityName);
 
-
-
     void setContent(Pair<Integer,Integer> position, String content);
 
-
+    int leftToEat();
 }
 

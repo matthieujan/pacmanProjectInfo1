@@ -2,6 +2,8 @@ package view;
 
 import main.*;
 import ressources.Canvas;
+import ressources.Event;
+import ressources.Pair;
 
 /**
  * Project pacmanProjectInfo1, BasicView
@@ -14,6 +16,11 @@ public class BasicView implements ViewInterface {
     private Block[][] viewContent;
     private Item[][] itemList;
     private Char[] charList;
+
+
+    private int pacmanSpeed = 10;
+    private int ghostSpeed = 10;
+    private int size;
 
     private static boolean VERBOSE = true;
 
@@ -31,14 +38,16 @@ public class BasicView implements ViewInterface {
         cleanItemList();
         cleanCharList();
         cleanViewContent();
+    }
 
+    public void startView(){
         // Getting new content
         char[][] walls = Engine.getInstance().getWalls();
         String[][] content = Engine.getInstance().getContent();
         String[] chars = Engine.getInstance().getCharacters();
 
         Canvas c = Canvas.getCanvas();
-        int size = Math.min(Canvas.WIDTH /walls.length, Canvas.HEIGHT /walls[0].length);
+        size = Math.min(Canvas.WIDTH /walls.length, Canvas.HEIGHT /walls[0].length);
 
         //Setting new contents
         BlockGenerator bg = new BlockGenerator(size,"black","blue");
@@ -56,39 +65,33 @@ public class BasicView implements ViewInterface {
         drawViewContent();
         drawItemList();
         drawCharsList();
-        Canvas.getCanvas().redraw();
+        c.redraw();
 
-        gameLoop();
+        while(!Engine.getInstance().endGame()){
+            gameLoop();
+            c.redraw();
+        }
     }
 
 
     private void gameLoop(){
         Char c;
+
+        int pacSpeed = 10;
+        int ghostSpeed = 10;
+
+        MoveManager mo = new MoveManager(viewContent,itemList,charList,pacSpeed,ghostSpeed);
+
         for(int i = 0;i<charList.length;i++){
             c = charList[i];
             if(c.getName() == "Pacman"){
-                pacmanMove(c);
-                isThereContact(c);
+                mo.pacmanMove(c);
+                mo.isThereContact(c);
             }else{
-                ghostMove(c);
+                mo.ghostMove(c);
             }
         }
     }
-
-    private void pacmanMove(Char c){
-
-    }
-
-    private void ghostMove(Char c){
-
-    }
-
-    private void isThereContact(Char c){
-
-    }
-
-
-
 
     /**
      * Methode permettant de preparer une nouvelle partie
@@ -121,7 +124,6 @@ public class BasicView implements ViewInterface {
     private void drawCharsList(){
         if(charList != null) {
             for (int i = 0; i < charList.length;i++) {
-                trace("Drawing char " + charList[i].getName());
                 charList[i].draw();
             }
         }

@@ -12,6 +12,9 @@ import ressources.Pair;
  */
 public class BasicController implements ControllerInterface{
 
+    int toEat;
+
+
     public BasicController(){
     }
 
@@ -24,16 +27,19 @@ public class BasicController implements ControllerInterface{
     public boolean isValidMove(String entityName, Pair<Float, Float> entityPosition, String entityDirection) {
         boolean ret = true;
         if((entityDirection == "LEFT") || (entityDirection == "RIGHT")){
-            if(Math.floor(entityPosition.y-0.5) != entityPosition.y){
+            if(Math.floor(entityPosition.y) != entityPosition.y){
                 ret = false;
             }
         }else if((entityDirection == "DOWN") || (entityDirection == "UP")) {
-            if(Math.floor(entityPosition.x-0.5) != entityPosition.x){
+            if(Math.floor(entityPosition.x) != entityPosition.x){
                 ret = false;
             }
-        } else {
-            ret = isWall(entityPosition,entityDirection);
         }
+
+        if(ret && entityDirection !=null && (Math.floor(entityPosition.y) == entityPosition.y) && (Math.floor(entityPosition.x) == entityPosition.x)){
+            ret = !isWall(entityPosition,entityDirection);
+        }
+
         return ret;
     }
 
@@ -70,8 +76,8 @@ public class BasicController implements ControllerInterface{
 
         xPos += xLength;
         xPos %= xLength;
-
-        return w[xPos][yPos] == 'W';
+        ret = w[xPos][yPos] == 'W';
+        return ret;
     }
 
     @Override
@@ -79,8 +85,8 @@ public class BasicController implements ControllerInterface{
         String ret = "";
         int r = (int)(Math.floor(Math.random()*4));
         switch (r){
-            case 0 : ret = "UP"; break;
-            case 1 : ret = "RIGHT"; break;
+            case 0 : ret = "RIGHT"; break;
+            case 1 : ret = "UP"; break;
             case 2 : ret = "LEFT"; break;
             case 3 : ret = "DOWN"; break;
         }
@@ -92,7 +98,7 @@ public class BasicController implements ControllerInterface{
     }
 
     @Override
-    public Event whatHappen(String entityOne,Pair<Float,Float>posOne, String entityTwo,Pair<Float,Float> posTwo) {
+    public Event whatHappen(String entityOne, String entityTwo) {
         Event ret = null;
         if(entityOne.matches("(.*)Ghost") && entityTwo.matches("(.*)Pacman(.*)")){
             ret = Event.DIE;
@@ -111,5 +117,10 @@ public class BasicController implements ControllerInterface{
     public Buff[] getBuffOf(String entityName) {
         Buff[] ret = null;
         return ret;
+    }
+
+    @Override
+    public boolean endGame() {
+        return Engine.getInstance().leftToEat() == 0;
     }
 }

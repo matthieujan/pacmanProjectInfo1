@@ -28,6 +28,19 @@ public class Char extends Circle {
     public String getNewDir(){
         return newDir;
     }
+
+    public void setNewDirection(String dir){
+        newDir = dir;
+    }
+
+    public void setOldDirection(String dir){
+        oldDir = dir;
+    }
+    @Override
+    public void move(int dx, int dy){
+        super.move(dx,dy);
+    }
+
     @Override
     protected void draw() {
         super.draw();

@@ -13,6 +13,8 @@ public interface ViewInterface {
      */
     void resetView();
 
+    void startView();
+
     /**
      * Methode permettant de preparer une nouvelle partie
      */

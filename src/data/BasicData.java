@@ -15,12 +15,21 @@ public class BasicData implements DataInterface{
     char[][] currentWalls;
     String[][] currentContent;
     String[] currentCharacters;
-
+    int toEat;
     public void resetData(){
         if(true){
             currentContent = createBasicContent();
             currentCharacters = createBasicCharacter();
             currentWalls = createBasicWall();
+            toEat = 0;
+            for(String[] i : currentContent){
+                for(String j : i){
+                    if(j == "GOMME"){
+                        toEat++;
+                    }
+                }
+            }
+
         }
     }
 
@@ -41,7 +50,20 @@ public class BasicData implements DataInterface{
     }
 
     public void setContent(Pair<Integer, Integer> position, String content) {
+        if("GOMME".equals(currentContent[position.x][position.y])){
+            toEat--;
+        }
+        if("GOMME".equals(content)){
+            toEat++;
+        }
         currentContent[position.x][position.y] = content;
+
+    }
+
+    @Override
+    public int leftToEat() {
+        System.out.println(toEat);
+        return toEat;
     }
 
     private String[][] createBasicContent(){
@@ -69,7 +91,7 @@ public class BasicData implements DataInterface{
     }
 
     private String[] createBasicCharacter(){
-        String[] ret = {"Pacman"};
+        String[] ret = {"Pacman","Ghost"};
         return ret;
     }
 }

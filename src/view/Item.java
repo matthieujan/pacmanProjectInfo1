@@ -10,8 +10,15 @@ import ressources.Circle;
  */
 public class Item extends Circle {
 
-    Item(int size, int x, int y , String color){
+    private String name;
+
+    Item(String name,int size, int x, int y , String color){
         super(size, x, y, color);
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void draw(){

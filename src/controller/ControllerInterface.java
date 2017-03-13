@@ -41,7 +41,7 @@ public interface ControllerInterface {
      * @param entityTwo
      * @return
      */
-    Event whatHappen(String entityOne,Pair<Float,Float> posOne, String entityTwo,Pair<Float,Float> posTwo);
+    Event whatHappen(String entityOne,String entityTwo);
 
     /**
      * Recupere les buffs de l'entité (concretement, pour un fantome, "eatable", ou pour pacman, "superspeed")
@@ -49,4 +49,7 @@ public interface ControllerInterface {
      * @return
      */
     Buff[] getBuffOf(String entityName);
+
+
+    boolean endGame();
 }
